@@ -7,7 +7,7 @@
  Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
 ]=]
 
--- Instances: 44 | Scripts: 8 | Modules: 0 | Tags: 0
+-- Instances: 47 | Scripts: 10 | Modules: 0 | Tags: 0
 local G2L = {};
 
 -- StarterGui.ScreenGui
@@ -405,6 +405,30 @@ G2L["2c"] = Instance.new("LocalScript", G2L["2a"]);
 
 
 
+-- StarterGui.ScreenGui.MainFrame.LocalScript
+G2L["2d"] = Instance.new("LocalScript", G2L["2"]);
+
+
+
+-- StarterGui.ScreenGui.TextButton
+G2L["2e"] = Instance.new("TextButton", G2L["1"]);
+G2L["2e"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["2e"]["Modal"] = true;
+G2L["2e"]["TextTransparency"] = 1;
+G2L["2e"]["TextSize"] = 14;
+G2L["2e"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["2e"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["2e"]["Size"] = UDim2.new(0, 200, 0, 50);
+G2L["2e"]["BackgroundTransparency"] = 1;
+G2L["2e"]["BorderColor3"] = Color3.fromRGB(28, 43, 54);
+G2L["2e"]["Visible"] = false;
+
+
+-- StarterGui.ScreenGui.TextButton.LocalScript
+G2L["2f"] = Instance.new("LocalScript", G2L["2e"]);
+
+
+
 -- StarterGui.ScreenGui.MainFrame.Content.iTamper.Walkspeed.LocalScript
 local function C_e()
 local script = G2L["e"];
@@ -612,5 +636,40 @@ local script = G2L["2c"];
 	end)
 end;
 task.spawn(C_2c);
+-- StarterGui.ScreenGui.MainFrame.LocalScript
+local function C_2d()
+local script = G2L["2d"];
+	wait(1)
+	
+	game.StarterGui:SetCore("SendNotification", {
+		Title = "Hold Q to unlock courser";
+		Text = "from iMod";
+		Duration = "7";
+	})
+end;
+task.spawn(C_2d);
+-- StarterGui.ScreenGui.TextButton.LocalScript
+local function C_2f()
+local script = G2L["2f"];
+	--[[ Varaibles ]]--
+	local uis=game:GetService("UserInputService");
+	
+	--[[ Main ]]--
+	
+	-- pressing
+	uis.InputBegan:connect(function(input)
+		if input.KeyCode==Enum.KeyCode.Q then
+			script.Parent.Visible = true
+		end
+	end)
+	
+	-- left 
+	uis.InputEnded:connect(function(input)
+		if input.KeyCode==Enum.KeyCode.Q then
+			script.Parent.Visible = false
+		end
+	end)
+end;
+task.spawn(C_2f);
 
 return G2L["1"], require;
